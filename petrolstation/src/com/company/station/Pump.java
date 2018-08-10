@@ -1,10 +1,7 @@
 package com.company.station;
-
 import com.company.vehicles.Vehicle;
 import com.company.station.*;
-
 import java.util.List;
-
 
 /**
  * 
@@ -17,10 +14,9 @@ import java.util.List;
 public class Pump {
 
     private List<Vehicle> queue;
-    private int queueSize;
+    public int queueSize;
 
-    public Pump(){
-    	
+    public Pump(){	
     }
     
     /**
@@ -69,7 +65,7 @@ public class Pump {
      * removes the first vehicle from the queue.
      *
      */
-    private void removeFromQueue(Vehicle vehicle) {
+    public void removeFromQueue(Vehicle vehicle) {
     	queue.remove(0);
     }
 
@@ -78,7 +74,7 @@ public class Pump {
      * addToQueue will check if a vehicle can be fitted into the queue, if it can then it will be added.
      *
      */
-    private void addToQueue(Vehicle vehicle) {
+    public void addToQueue(Vehicle vehicle) {
     	if (queueSize < 6 - vehicle.queueSize) {
     		queue.add(vehicle);
     	}

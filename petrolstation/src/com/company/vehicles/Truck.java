@@ -2,7 +2,7 @@ package com.company.vehicles;
 
 public class Truck extends Vehicle {
 
-    public int fuelTankSize = 100;
+    public int fuelTankSize = 80;
     public double probabilityOfShop;
     public int queueSize;
     public double queueDuration;

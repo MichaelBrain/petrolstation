@@ -1,11 +1,13 @@
 package com.company;
-
+import java.util.concurrent.TimeUnit;
 import com.company.station.Pump;
 import com.company.station.Shop;
 import com.company.vehicles.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
 
 /**
  * 
@@ -17,7 +19,7 @@ import java.util.Random;
 public class PetrolStation {
 
     private int tick;
-    public int noOfPumps;
+    public int noOfPumps = 5;
     private int pumpCount;
     private double fuelPrice;
     private double profit;
@@ -27,14 +29,21 @@ public class PetrolStation {
     public int fcProbability;
     public int mProbablilty;
     
+    PetrolStation() {
+    	RunEvery10();
+    }
+    
+    
     /**
      * 
      * The update function runs every new tick and refreshes the pump and creates a new car for checking if it can fuel in the station.
      *
      */
-    private void update() {
-    	for (int i = 0; i < pumps.size(); i++) {
-    		pumps.get(i).TickRefresh();
+    public void update() {
+    	List<Pump> p = new ArrayList<Pump>();
+    	p = pumps;
+    	for (int i = 0; i < p.size(); i++) {
+    		p.get(i).TickRefresh();
     	}
     	addCars();
     }
@@ -88,6 +97,17 @@ public class PetrolStation {
 			}
 		}
 		return p;
+	}
+	
+	private void RunEvery10() {
+		while (true) {
+			try {
+				update();
+				TimeUnit.SECONDS.sleep(10);
+				} catch (InterruptedException e) {
+					System.out.println("Wait failed");
+				}
+		}
 	}
 }
 

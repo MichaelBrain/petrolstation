@@ -1,26 +1,38 @@
 package com.company.station;
 
 import java.util.List;
+import com.company.vehicles.Vehicle;
 
 public class Shop {
 
     public List<Till> tills;
+    public List<Vehicle> vehicles;
     public int noOfTills;
     private double profit;
     private int shoppers;
 
     public Shop() {}
 
-    private void takePayment(List<Till> tills){
-
+    private void takePayment(Vehicle vehicle){
+    	Till t = getEmptiestTill();
+		t.addToQueue(vehicle);
     }
 
-    private void addShopper(List<Till> tills){
-
+    
+    public void addShopper(Vehicle vehicle){
+    	if (vehicle.shopCheck() == false)
+    	{
+    		takePayment(vehicle);
+    	} else if (vehicle.shopping == true) {
+    		vehicles.add(vehicle);
+    	}
+    	
     }
 
-    private void removeShopper(List<Till> tills){
-
+    private void removeShopper(Vehicle vehicle){
+    	
+    	vehicles.remove(vehicle);
+    	
     }
 
     /**

@@ -1,8 +1,7 @@
 package com.company.station;
 import com.company.vehicles.Vehicle;
+import com.company.Main;
 import com.company.station.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,8 +33,11 @@ public class Pump {
     		pumpFuel(v);
     	}
     	else {
-    		if (v.shopCheck()) {
-    		}
+    		removeFromQueue(v);
+    	}
+    	
+    	for (int i=0; i < queue.size(); i++) {
+    		queue.get(0).tickTime += 1;
     	}
     }
     
@@ -64,11 +66,18 @@ public class Pump {
 
     /**
      * 
-     * removes the first vehicle from the queue.
+     * removes the first vehicle from the queue if they have paid, otherwise it checks if they are shopping or paying and if not will add them to the shop queues.
      *
      */
     public void removeFromQueue(Vehicle vehicle) {
+    	Shop c = Main.shop;
+    	if (vehicle.paid) {
     	queue.remove(0);
+    	} else {
+    		if (!c.vehicles.contains(vehicle)) {
+    		c.addShopper(vehicle);
+    		}
+    	}
     }
 
     /**

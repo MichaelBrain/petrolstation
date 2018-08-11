@@ -13,6 +13,8 @@ public class Truck extends Vehicle {
     public double probabilityOfShop;
     public double queueSize = 2.00;
     public double queueDuration;
+    public boolean shopping;
+    public boolean paid;
 
     /**
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.

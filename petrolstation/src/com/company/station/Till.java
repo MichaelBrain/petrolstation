@@ -16,12 +16,16 @@ public class Till {
     private double paymentAmount;
     public List<Vehicle> queue;
     public int queueSize;
+    public double fuelPrice = 1.2;
 
     public Till(){
     }
 
-    private void takePayment(Vehicle vehicle){
-
+    private void takePayment(){
+    	Vehicle v = queue.get(0);
+    	paymentAmount = paymentAmount + (double)v.fuelReceived * fuelPrice;
+    	v.paid = true;
+    	queue.remove(0);
     }
 
     /**

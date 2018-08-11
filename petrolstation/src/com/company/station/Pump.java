@@ -1,6 +1,8 @@
 package com.company.station;
 import com.company.vehicles.Vehicle;
 import com.company.station.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +28,9 @@ public class Pump {
      *
      */
     public void TickRefresh() {
-    	Vehicle v = queue.get(0);
+    	List<Vehicle> vehicle = new ArrayList<Vehicle>();
+    	vehicle = queue;
+    	Vehicle v = vehicle.get(0);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
     	if(moreFuelNeeded(v)) {
     		pumpFuel(v);

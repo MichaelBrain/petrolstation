@@ -8,16 +8,18 @@ import com.company.vehicles.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Main {
 
     private static final String SPACER = "-------------------------------------------";
+    public static PetrolStation station;
 
     public static void main(String[] args) {
         setUp();
     }
 
     public static void setUp(){
-        PetrolStation station = new PetrolStation();
+        station = new PetrolStation();
         Shop shop = new Shop();
 
         List<Pump> pumpList = new ArrayList<Pump>();

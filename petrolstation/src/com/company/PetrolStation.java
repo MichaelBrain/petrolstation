@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.station.Pump;
+import com.company.station.Shop;
 import com.company.vehicles.*;
 
 import java.util.List;
@@ -70,23 +71,23 @@ public class PetrolStation {
     }
       
     /**
-     * 
-     * The getEmptiest pump function determines the emptiest pump by comparing all of the queue sizes to get the lowest value.
-     * 
-     *@return the pump with the lowest queuesize.
-     */
-    private Pump getEmptiestPump() {
-    	Pump p = pumps.get(0);
-    	Pump pToCheck;
-    	for (int i=0; i < pumps.size(); i++)
-    	{
-    		pToCheck = pumps.get(i);
-    		if (p.queueSize > pToCheck.queueSize)
-    		{
-    			p = pToCheck;
-    		}
-    	}
-    	return p;
-    }
+	 *
+	 * The getEmptiest pump function determines the emptiest pump by comparing all of the queue sizes to get the lowest value.
+	 *
+	 *@return the pump with the lowest queuesize.
+	 */
+	private Pump getEmptiestPump() {
+		Pump p = pumps.get(0);
+		Pump pToCheck;
+		for (int i=0; i < pumps.size(); i++)
+		{
+			pToCheck = pumps.get(i);
+			if (p.queueSize > pToCheck.queueSize)
+			{
+				p = pToCheck;
+			}
+		}
+		return p;
+	}
 }
 

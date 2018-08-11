@@ -30,7 +30,6 @@ public class PetrolStation {
     public int mProbablilty;
     
     PetrolStation() {
-    	RunEvery10();
     }
     
     
@@ -40,10 +39,8 @@ public class PetrolStation {
      *
      */
     public void update() {
-    	List<Pump> p = new ArrayList<Pump>();
-    	p = pumps;
-    	for (int i = 0; i < p.size(); i++) {
-    		p.get(i).TickRefresh();
+    	for (int i = 0; i < pumps.size(); i++) {
+    		pumps.get(i).TickRefresh();
     	}
     	addCars();
     }
@@ -75,7 +72,7 @@ public class PetrolStation {
     	}
     }
 
-    private void removeCar(Vehicle vehicle){
+    private void removeVehicle(Vehicle vehicle){
     	
     }
       

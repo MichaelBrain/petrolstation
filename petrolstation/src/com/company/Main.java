@@ -13,6 +13,7 @@ public class Main {
 
     private static final String SPACER = "-------------------------------------------";
     public static PetrolStation station;
+    public static Shop shop;
 
     public static void main(String[] args) {
         setUp();
@@ -20,7 +21,7 @@ public class Main {
 
     public static void setUp(){
         station = new PetrolStation();
-        Shop shop = new Shop();
+        shop = new Shop();
 
         List<Pump> pumpList = new ArrayList<Pump>();
         for (int i=0; i < station.noOfPumps; i++)

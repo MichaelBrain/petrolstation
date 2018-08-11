@@ -11,7 +11,7 @@ public class Motorbike extends Vehicle {
     public int fuelTankSize = 5;
     public int fuelReceived;
     public double probabilityOfShop;
-    public int queueSize;
+    public double queueSize = 0.75;
     public double queueDuration;
 
     /**

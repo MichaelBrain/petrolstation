@@ -11,7 +11,7 @@ public class Truck extends Vehicle {
     public int fuelTankSize = 80;
     public int fuelReceived;
     public double probabilityOfShop;
-    public int queueSize;
+    public double queueSize = 2.00;
     public double queueDuration;
 
     /**

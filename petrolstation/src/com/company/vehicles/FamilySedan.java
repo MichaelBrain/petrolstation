@@ -11,7 +11,7 @@ public class FamilySedan extends Vehicle {
     public int fuelTankSize = 18;
     public int fuelReceived;
     public double probabilityOfShop;
-    public int queueSize;
+    public double queueSize = 1.50;
     public double queueDuration;
 
     /**

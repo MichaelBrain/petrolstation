@@ -28,9 +28,7 @@ public class Pump {
      *
      */
     public void TickRefresh() {
-    	List<Vehicle> vehicle = new ArrayList<Vehicle>();
-    	vehicle = queue;
-    	Vehicle v = vehicle.get(0);
+    	Vehicle v = queue.get(0);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
     	if(moreFuelNeeded(v)) {
     		pumpFuel(v);
@@ -79,9 +77,8 @@ public class Pump {
      *
      */
     public void addToQueue(Vehicle vehicle) {
-    	if (queueSize < 6 - vehicle.queueSize) {
+    	if (queueSize < 3.00 && queueSize + vehicle.queueSize < 3.00) {
     		queue.add(vehicle);
     	}
-    	
     }
 }

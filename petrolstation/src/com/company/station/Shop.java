@@ -7,7 +7,7 @@ public class Shop {
 
     public List<Till> tills;
     public List<Vehicle> vehicles;
-    public int noOfTills;
+    public int noOfTills = 2;
     private double profit;
     private int shoppers;
 

@@ -62,22 +62,24 @@ public class PetrolStation {
     	chosenPump = getEmptiestPump();
     	Random SpawnProb = new Random();
     	int randNum = SpawnProb.nextInt(100) + 1;
-    	System.out.println(randNum);
-    	
+
     	//if the random integer is below the motorbike probability, then create a motorbike
     	if (randNum < mProbablilty){
     		Motorbike mBike = new Motorbike();
     		chosenPump.addToQueue(mBike);
+			System.out.println("Motorbike Added");
     	}
     	//if the random integer is below the small car probability, then create a small car
     	else if (randNum < scProbability) {
     		SmallCar sc = new SmallCar();
     		chosenPump.addToQueue(sc);
+			System.out.println("Small Car Added");
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
     	else if (randNum < fcProbability ) {
     		FamilySedan fs = new FamilySedan();
     		chosenPump.addToQueue(fs);
+			System.out.println("Family Sedan Added");
     	}
     }
 

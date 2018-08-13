@@ -92,7 +92,6 @@ public class Pump {
      */
     public void addToQueue(Vehicle vehicle) {
     	if (queueSize < 6 && (double)queueSize + vehicle.queueSize < (double)6) {
-    		System.out.println("Vehicle Added");
     		queue.add(vehicle);
     		queueSize += vehicle.queueSize;
     	}

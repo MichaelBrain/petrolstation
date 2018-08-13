@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Pump {
 
-    public List<Vehicle> queue;
+    public ArrayList<Vehicle> queue = new ArrayList<Vehicle>();
     public double queueSize=0;
 
     public Pump(){
@@ -32,7 +32,6 @@ public class Pump {
      */
     public void TickRefresh(Vehicle vehicle) {
     	System.out.println("Pumping Fuel");
-    	System.out.println(queueSize);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
     	if(moreFuelNeeded(vehicle)) {
     		pumpFuel(vehicle);
@@ -90,11 +89,17 @@ public class Pump {
      * addToQueue will check if a vehicle can be fitted into the queue, if it can then it will be added.
      *
      */
-    public void addToQueue(Vehicle vehicle) {
-    	if (queueSize < 6 && (double)queueSize + vehicle.queueSize < (double)6) {
+    public void addToQueue(Vehicle vehicle, double vQueueSize) {
+    	
+    	if (queueSize < (double)6 && queueSize + vQueueSize < (double)6) {
     		queue.add(vehicle);
-    		queueSize += vehicle.queueSize;
+    		queueSize = queueSize + vQueueSize;
+    		System.out.println("Vehicle Added");
+    		System.out.println("Queue Size: " + queueSize);
     	}
+    	else {
+    		System.out.println("Queue Size: " + queueSize);
     	System.out.println("Vehicle too large");
+    	}
     }
 }

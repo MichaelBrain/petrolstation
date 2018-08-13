@@ -23,13 +23,12 @@ public class PetrolStation {
     private double fuelPrice;
     private double profit;
     private double losses;
-    public List<Pump> pumps;
+    public ArrayList<Pump> pumps = new ArrayList<Pump>();
     public int scProbability = 60;
     public int fcProbability = 90;
     public int mProbablilty = 20;
     
     PetrolStation() {
-    	pumps = new ArrayList<Pump>();
     }
     
     /**
@@ -66,20 +65,23 @@ public class PetrolStation {
     	//if the random integer is below the motorbike probability, then create a motorbike
     	if (randNum < mProbablilty){
     		Motorbike mBike = new Motorbike();
-    		chosenPump.addToQueue(mBike);
-			System.out.println("Motorbike Added");
+    		chosenPump.addToQueue(mBike, mBike.queueSize);
+			System.out.println("Motorbike");
+			System.out.println("A Motorbike Arrives");
     	}
     	//if the random integer is below the small car probability, then create a small car
     	else if (randNum < scProbability) {
     		SmallCar sc = new SmallCar();
-    		chosenPump.addToQueue(sc);
-			System.out.println("Small Car Added");
+    		chosenPump.addToQueue(sc, sc.queueSize);
+			System.out.println("Small Car");
+			System.out.println("A Small Car Arrives");
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
     	else if (randNum < fcProbability ) {
     		FamilySedan fs = new FamilySedan();
-    		chosenPump.addToQueue(fs);
-			System.out.println("Family Sedan Added");
+    		chosenPump.addToQueue(fs, fs.queueSize);
+			System.out.println("Family Sedan");
+			System.out.println("A Family Sedan Arrives");
     	}
     }
 
@@ -91,15 +93,18 @@ public class PetrolStation {
 	 */
 	private Pump getEmptiestPump() {
 		Pump p = pumps.get(0);
+		int chosenPumpNo = 0;
 		Pump pToCheck = new Pump();
 		for (int i=0; i < pumps.size(); i++)
 		{
 			pToCheck = pumps.get(i);
-			if (p.queueSize < pToCheck.queueSize)
+			if (p.queueSize > pToCheck.queueSize)
 			{
+				chosenPumpNo = i;
 				p = pToCheck;
 			}
 		}
+		System.out.println("Pump number " + chosenPumpNo + " chosen");
 		return p;
 	}
 	

@@ -1,13 +1,13 @@
 package com.company.station;
 
 import com.company.vehicles.Vehicle;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
 
-    public List<Till> tills;
-    public List<Vehicle> vehicles;
+    public ArrayList<Till> tills = new ArrayList<Till>();
+    public ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
     public int noOfTills;
     private double profit;
     private int shoppers;
@@ -48,7 +48,7 @@ public class Shop {
         for (int i=0; i < tills.size(); i++)
         {
             tToCheck = tills.get(i);
-            if (t.queueSize > tToCheck.queueSize)
+            if (t.queueSize < tToCheck.queueSize)
             {
                 t = tToCheck;
             }

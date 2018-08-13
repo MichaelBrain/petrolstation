@@ -15,12 +15,11 @@ import java.util.List;
 public class Till {
 
     private double paymentAmount;
-    public List<Vehicle> queue;
+    public ArrayList<Vehicle> queue = new ArrayList<Vehicle>();
     public int queueSize;
     public double fuelPrice = 1.2;
 
     public Till(){
-        queue = new ArrayList<Vehicle>();
     }
 
     private void takePayment(){

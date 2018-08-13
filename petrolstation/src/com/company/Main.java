@@ -32,7 +32,7 @@ public class Main {
         station.noOfPumps = Integer.parseInt(numberOfPumps);
         shop.noOfTills = Integer.parseInt(numberOfTills);
 
-        List<Pump> pumpList = new ArrayList<Pump>();
+        ArrayList<Pump> pumpList = new ArrayList<Pump>();
         for (int i=0; i < station.noOfPumps; i++)
         {
         	Pump p = new Pump();
@@ -40,7 +40,7 @@ public class Main {
         }
         station.pumps = pumpList;
 
-        List<Till> tillList = new ArrayList<Till>();
+        ArrayList<Till> tillList = new ArrayList<Till>();
         for (int i=0; i < shop.noOfTills; i++)
         {
             Till t = new Till();

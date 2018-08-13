@@ -65,11 +65,8 @@ public class PetrolStation {
     	//if the random integer is below the motorbike probability, then create a motorbike
     	if (randNum < mProbablilty){
     		Motorbike mBike = new Motorbike();
-    		chosenPump.addToQueue(mBike, mBike.queueSize);
-			System.out.println("Motorbike");
-			System.out.println("A Motorbike Arrives");
-    		if (chosenPump.addToQueue(mBike)) {
-				System.out.println("Motorbike Added");
+    		if (chosenPump.addToQueue(mBike, mBike.queueSize)) {
+    			System.out.println("A Motorbike Arrives");
 			} else {
 				System.out.println("Motorbike too large, motorbike has left");
 			}
@@ -77,11 +74,8 @@ public class PetrolStation {
     	//if the random integer is below the small car probability, then create a small car
     	else if (randNum < scProbability) {
     		SmallCar sc = new SmallCar();
-    		chosenPump.addToQueue(sc, sc.queueSize);
-			System.out.println("Small Car");
-			System.out.println("A Small Car Arrives");
-			if (chosenPump.addToQueue(sc)) {
-				System.out.println("Small Car Added");
+			if (chosenPump.addToQueue(sc, sc.queueSize)) {
+				System.out.println("A Small Car Arrives");
 			} else {
 				System.out.println("Small Car too large, Small Car has left");
 			}
@@ -89,11 +83,8 @@ public class PetrolStation {
     	//if the random integer is below the family sedan probability, then create a family sedan
     	else if (randNum < fcProbability ) {
     		FamilySedan fs = new FamilySedan();
-    		chosenPump.addToQueue(fs, fs.queueSize);
-			System.out.println("Family Sedan");
-			System.out.println("A Family Sedan Arrives");
-			if (chosenPump.addToQueue(fs)) {
-				System.out.println("Family Sedan Added");
+			if (chosenPump.addToQueue(fs, fs.queueSize)) {
+				System.out.println("A Family Sedan Arrives");
 			} else {
 				System.out.println("Family Sedan too large, Family Sedan has left");
 			}
@@ -128,6 +119,7 @@ public class PetrolStation {
 			try {
 				update();
 				System.out.println("Next Tick");
+				System.out.println("-------------------------------------------");
 				TimeUnit.SECONDS.sleep(10);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");

@@ -32,7 +32,6 @@ public class Pump {
      */
     public void TickRefresh() {
     	Vehicle vehicle = queue.get(0);
-    	System.out.println("Vehicle Fuel: " + vehicle.fuelReceived);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
     	if(moreFuelNeeded()) {
     		pumpFuel();
@@ -122,11 +121,31 @@ public class Pump {
      */
     public void removeFromQueue(Vehicle vehicle) {
     	Shop c = Main.shop;
-    	if (vehicle.paid) {
-    	queue.remove(0);
-    	} else {
-    		if (!c.vehicles.contains(vehicle)) {
-    		c.addShopper(vehicle);
+    	if (vehicle instanceof Motorbike) {
+    		Motorbike m = (Motorbike) vehicle;
+    		if (m.paid ) {
+    			queue.remove(0);
+    		}
+    		else if (!c.vehicles.contains(m)) {
+    			c.addShopper(m);
+    		}
+    		
+    	} else if (vehicle instanceof SmallCar) {
+    		SmallCar sc = (SmallCar) vehicle;
+    		if (sc.paid ) {
+    			queue.remove(0);
+    		}
+    		else if (!c.vehicles.contains(sc)) {
+    			c.addShopper(sc);
+    		}
+    		
+    	} else if (vehicle instanceof FamilySedan) {
+    		FamilySedan fs = (FamilySedan) vehicle;
+    		if (fs.paid ) {
+    			queue.remove(0);
+    		}
+    		else if (!c.vehicles.contains(fs)) {
+    			c.addShopper(fs);
     		}
     	}
     }
@@ -139,7 +158,7 @@ public class Pump {
      */
     public boolean addToQueue(Vehicle vehicle, double vQueueSize) {
     	
-    	if (queueSize < (double)3 && queueSize + vQueueSize < (double)3) {
+    	if (queueSize < (double)3 && queueSize + vQueueSize <= (double)3) {
     		queue.add(vehicle);
     		queueSize = queueSize + vQueueSize;
     		System.out.println("Vehicle Added");

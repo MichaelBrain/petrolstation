@@ -1,6 +1,6 @@
 package com.company.station;
 
-import com.company.vehicles.Vehicle;
+import com.company.vehicles.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +21,39 @@ public class Shop {
 
     
     public void addShopper(Vehicle vehicle){
-    	if (vehicle.shopCheck() == false)
-    	{
-    		takePayment(vehicle);
-    	} else if (vehicle.shopping == true) {
-    		vehicles.add(vehicle);
+    	if (vehicle instanceof Motorbike) {
+    		Motorbike m = (Motorbike) vehicle;
+    		if (m.shopCheck()) {
+    			if (vehicle.shopping) {
+    				vehicles.add(m);
+    			}
+    		}
+    		else {
+    			takePayment(m);
+    		}
     	}
-    	
+    	else if (vehicle instanceof SmallCar) {
+    		SmallCar sc = (SmallCar) vehicle;
+    		if (sc.shopCheck()) {
+    			if (vehicle.shopping) {
+    				vehicles.add(sc);
+    			}
+    		}
+    		else {
+    			takePayment(sc);
+    		}
+    	}
+    	else if (vehicle instanceof FamilySedan) {
+    		FamilySedan fs = (FamilySedan) vehicle;
+    		if (fs.shopCheck()) {
+    			if (vehicle.shopping) {
+    				vehicles.add(fs);
+    			}
+    		}
+    		else {
+    			takePayment(fs);
+    		}
+    	}
     }
 
     private void removeShopper(Vehicle vehicle){
@@ -48,7 +74,7 @@ public class Shop {
         for (int i=0; i < tills.size(); i++)
         {
             tToCheck = tills.get(i);
-            if (t.queueSize < tToCheck.queueSize)
+            if (t.queueSize > tToCheck.queueSize)
             {
                 t = tToCheck;
             }

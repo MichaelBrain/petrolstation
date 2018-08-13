@@ -1,7 +1,5 @@
 package com.company.vehicles;
 
-import java.util.Random;
-
 /**
  * The Motorbike class extends the vehicle class as another type of vehicle that can access the petrol station.
  * 

@@ -3,10 +3,14 @@ package com.company;
 import com.company.station.Pump;
 import com.company.station.Shop;
 import com.company.station.Till;
-import com.company.vehicles.Vehicle;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
@@ -22,6 +26,11 @@ public class Main {
     public static void setUp(){
         station = new PetrolStation();
         shop = new Shop();
+
+        String numberOfPumps = JOptionPane.showInputDialog(null, "Please input a number of pumps.");
+        String numberOfTills = JOptionPane.showInputDialog(null, "Please input a number of tills.");
+        station.noOfPumps = Integer.parseInt(numberOfPumps);
+        shop.noOfTills = Integer.parseInt(numberOfTills);
 
         List<Pump> pumpList = new ArrayList<Pump>();
         for (int i=0; i < station.noOfPumps; i++)

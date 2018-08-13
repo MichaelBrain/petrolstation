@@ -1,7 +1,5 @@
 package com.company.vehicles;
 
-import java.math.BigDecimal;
-
 /**
  * The Vehicle class acts as a type for all other vehicles to follow, this will be inherited by the Truck, Small Car, Family Sedan and Motorbike.
  * This class contains the variables each vehicle type will require for operation in the petrol station system.

@@ -1,13 +1,11 @@
 package com.company;
-import java.util.concurrent.TimeUnit;
+
 import com.company.station.Pump;
-import com.company.station.Shop;
 import com.company.vehicles.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 
@@ -19,7 +17,7 @@ import java.util.Timer;
 public class PetrolStation {
 
     private int tick;
-    public int noOfPumps = 5;
+    public int noOfPumps;
     private int pumpCount;
     private double fuelPrice;
     private double profit;

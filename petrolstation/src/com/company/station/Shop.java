@@ -1,13 +1,14 @@
 package com.company.station;
 
-import java.util.List;
 import com.company.vehicles.Vehicle;
+
+import java.util.List;
 
 public class Shop {
 
     public List<Till> tills;
     public List<Vehicle> vehicles;
-    public int noOfTills = 2;
+    public int noOfTills;
     private double profit;
     private int shoppers;
 

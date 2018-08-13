@@ -2,6 +2,7 @@ package com.company.station;
 
 import com.company.vehicles.Vehicle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class Till {
     public double fuelPrice = 1.2;
 
     public Till(){
+        queue = new ArrayList<Vehicle>();
     }
 
     private void takePayment(){

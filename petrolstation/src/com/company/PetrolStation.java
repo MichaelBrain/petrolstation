@@ -3,6 +3,7 @@ package com.company;
 import com.company.station.Pump;
 import com.company.vehicles.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,7 @@ public class PetrolStation {
     public int mProbablilty = 20;
     
     PetrolStation() {
+    	pumps = new ArrayList<Pump>();
     }
     
     /**

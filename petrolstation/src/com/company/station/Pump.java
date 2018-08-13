@@ -17,10 +17,11 @@ import java.util.List;
  */
 public class Pump {
 
-    public List<Vehicle> queue = null;
+    public List<Vehicle> queue;
     public double queueSize=0;
 
-    public Pump(){	
+    public Pump(){
+    	queue = new ArrayList<Vehicle>();
     }
     
     /**
@@ -91,10 +92,10 @@ public class Pump {
      */
     public void addToQueue(Vehicle vehicle) {
     	if (queueSize < 6 && (double)queueSize + vehicle.queueSize < (double)6) {
-    		System.out.println("Car Added");
+    		System.out.println("Vehicle Added");
     		queue.add(vehicle);
     		queueSize += vehicle.queueSize;
     	}
-    	System.out.println("Car too large");
+    	System.out.println("Vehicle too large");
     }
 }

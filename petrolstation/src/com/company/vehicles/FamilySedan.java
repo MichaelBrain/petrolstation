@@ -9,7 +9,7 @@ import java.util.Random;
  *
  */
 public class FamilySedan extends Vehicle {
-
+	
     public int fuelTankSize = 18;
     public int fuelReceived = 0;
     public int probabilityOfShop = 40;

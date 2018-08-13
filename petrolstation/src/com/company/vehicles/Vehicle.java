@@ -9,14 +9,14 @@ package com.company.vehicles;
  */
 public abstract class Vehicle {
 
-    public int fuelTankSize;
-    public int tickTime;
-    public int fuelReceived;
-    public int probabilityOfShop;
-    public double queueSize;
-    public double queueDuration;
-    public boolean shopping;
-    public boolean paid;
+    public int fuelTankSize = 0;
+    public int tickTime = 0;
+    public int fuelReceived = 0;
+    public int probabilityOfShop = 0;
+    public double queueSize = 0.0;
+    public double queueDuration = 0.0;
+    public boolean shopping = false;
+    public boolean paid = false;
 
     /**
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.

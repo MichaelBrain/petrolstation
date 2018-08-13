@@ -42,10 +42,9 @@ public class PetrolStation {
     	for (int i = 0; i < pumps.size(); i++) {
     		p=pumps.get(i);	
     		if (p.queueSize != 0) {
-    		p.TickRefresh(pumps.get(i).queue.get(0));
+    		p.TickRefresh();
     		}
     		else {
-    			break;
     		}
     	}
     	addCars();

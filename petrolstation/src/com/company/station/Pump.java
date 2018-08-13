@@ -2,7 +2,7 @@ package com.company.station;
 
 import com.company.Main;
 import com.company.station.*;
-import com.company.vehicles.Vehicle;
+import com.company.vehicles.*;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -30,11 +30,12 @@ public class Pump {
      * If fuel is needed, it will run the pumpFuel function otherwise it will check if the vehicle will shop.
      *
      */
-    public void TickRefresh(Vehicle vehicle) {
-    	System.out.println("Pumping Fuel");
+    public void TickRefresh() {
+    	Vehicle vehicle = queue.get(0);
+    	System.out.println("Vehicle Fuel: " + vehicle.fuelReceived);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
-    	if(moreFuelNeeded(vehicle)) {
-    		pumpFuel(vehicle);
+    	if(moreFuelNeeded()) {
+    		pumpFuel();
     	}
     	else {
     		removeFromQueue(vehicle);
@@ -50,8 +51,24 @@ public class Pump {
      * pumpFuel will run when called from TickRefresh and will increment the fuelReceveived variable by 1 as 1 gallon was pumped.
      *
      */
-    private void pumpFuel(Vehicle vehicle) {
-    	vehicle.fuelReceived += 1;
+    private void pumpFuel() {
+    	Vehicle vehicle = queue.get(0);
+    	if (vehicle instanceof Motorbike) {
+    		Motorbike m = (Motorbike) vehicle;
+    		m.fuelReceived += 1;
+    		System.out.println("Total fuel pumped: " + m.fuelReceived + ". Total fuel required: " + m.fuelTankSize);
+    		queue.set(0, m);
+    	} else if (vehicle instanceof SmallCar) {
+    		SmallCar sc = (SmallCar) vehicle;
+    		sc.fuelReceived += 1;
+    		System.out.println("Total fuel pumped: " + sc.fuelReceived + ". Total fuel required: " + sc.fuelTankSize);
+    		queue.set(0, sc);
+    	} else if (vehicle instanceof FamilySedan) {
+    		FamilySedan fs = (FamilySedan) vehicle;
+    		fs.fuelReceived += 1;
+    		System.out.println("Total fuel pumped: " + fs.fuelReceived + ". Total fuel required: " + fs.fuelTankSize);
+    		queue.set(0, fs);
+    	}
     }
 
     /**
@@ -59,12 +76,42 @@ public class Pump {
      * moreFuelNeeded will check the vehicles tank size against the amount filled, if the fuel tank size is larger than the fuel received, it will return true.
      *
      */
-    private boolean moreFuelNeeded(Vehicle vehicle) {
-    	if (vehicle.fuelTankSize < vehicle.fuelReceived) {
-    		return true;
+    private boolean moreFuelNeeded() {
+    	Vehicle v = queue.get(0);
+    	if (v instanceof Motorbike) {
+    		Motorbike m = (Motorbike) v;
+    		if (m.fuelTankSize > m.fuelReceived) {
+    			System.out.println("tank size: " + m.fuelTankSize + ". Received: " + m.fuelReceived);
+        		return true;
+        	}
+        	else {
+        		return false;	
+        	}
+    	} 
+    	
+    	else if (v instanceof SmallCar) {
+    		SmallCar sc = (SmallCar) v;
+    		if (sc.fuelTankSize > sc.fuelReceived) {
+    			System.out.println("tank size: " + sc.fuelTankSize + ". Received: " + sc.fuelReceived);
+        		return true;
+        	}
+    		else {
+    			return false;
+    		}
+    	}
+    	
+    	else if(v instanceof FamilySedan) {
+    		FamilySedan fs = (FamilySedan) v;
+    		if (fs.fuelTankSize > fs.fuelReceived) {
+    			System.out.println("tank size: " + fs.fuelTankSize + ". Received: " + fs.fuelReceived);
+        		return true;
+        	}
+        	else {
+        		return false;	
+        	}
     	}
     	else {
-    		return false;	
+    		return false;
     	}
     }
 

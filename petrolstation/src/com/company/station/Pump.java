@@ -101,5 +101,14 @@ public class Pump {
     		System.out.println("Queue Size: " + queueSize);
     	System.out.println("Vehicle too large");
     	}
+    	
+    public boolean addToQueue(Vehicle vehicle) {
+    	if (queueSize < 3 && (double)queueSize + vehicle.queueSize < (double)3) {
+    		queue.add(vehicle);
+    		queueSize += vehicle.queueSize;
+    		return true;
+    	} else {
+			return false;
+		}
     }
 }

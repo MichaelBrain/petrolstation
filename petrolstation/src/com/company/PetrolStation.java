@@ -68,6 +68,11 @@ public class PetrolStation {
     		chosenPump.addToQueue(mBike, mBike.queueSize);
 			System.out.println("Motorbike");
 			System.out.println("A Motorbike Arrives");
+    		if (chosenPump.addToQueue(mBike)) {
+				System.out.println("Motorbike Added");
+			} else {
+				System.out.println("Motorbike too large, motorbike has left");
+			}
     	}
     	//if the random integer is below the small car probability, then create a small car
     	else if (randNum < scProbability) {
@@ -75,6 +80,11 @@ public class PetrolStation {
     		chosenPump.addToQueue(sc, sc.queueSize);
 			System.out.println("Small Car");
 			System.out.println("A Small Car Arrives");
+			if (chosenPump.addToQueue(sc)) {
+				System.out.println("Small Car Added");
+			} else {
+				System.out.println("Small Car too large, Small Car has left");
+			}
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
     	else if (randNum < fcProbability ) {
@@ -82,6 +92,11 @@ public class PetrolStation {
     		chosenPump.addToQueue(fs, fs.queueSize);
 			System.out.println("Family Sedan");
 			System.out.println("A Family Sedan Arrives");
+			if (chosenPump.addToQueue(fs)) {
+				System.out.println("Family Sedan Added");
+			} else {
+				System.out.println("Family Sedan too large, Family Sedan has left");
+			}
     	}
     }
 

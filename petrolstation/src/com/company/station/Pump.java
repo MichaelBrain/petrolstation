@@ -90,11 +90,13 @@ public class Pump {
      * addToQueue will check if a vehicle can be fitted into the queue, if it can then it will be added.
      *
      */
-    public void addToQueue(Vehicle vehicle) {
-    	if (queueSize < 6 && (double)queueSize + vehicle.queueSize < (double)6) {
+    public boolean addToQueue(Vehicle vehicle) {
+    	if (queueSize < 3 && (double)queueSize + vehicle.queueSize < (double)3) {
     		queue.add(vehicle);
     		queueSize += vehicle.queueSize;
-    	}
-    	System.out.println("Vehicle too large");
+    		return true;
+    	} else {
+			return false;
+		}
     }
 }

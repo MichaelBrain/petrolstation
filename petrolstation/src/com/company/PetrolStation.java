@@ -66,20 +66,29 @@ public class PetrolStation {
     	//if the random integer is below the motorbike probability, then create a motorbike
     	if (randNum < mProbablilty){
     		Motorbike mBike = new Motorbike();
-    		chosenPump.addToQueue(mBike);
-			System.out.println("Motorbike Added");
+    		if (chosenPump.addToQueue(mBike)) {
+				System.out.println("Motorbike Added");
+			} else {
+				System.out.println("Motorbike too large, motorbike has left");
+			}
     	}
     	//if the random integer is below the small car probability, then create a small car
     	else if (randNum < scProbability) {
     		SmallCar sc = new SmallCar();
-    		chosenPump.addToQueue(sc);
-			System.out.println("Small Car Added");
+			if (chosenPump.addToQueue(sc)) {
+				System.out.println("Small Car Added");
+			} else {
+				System.out.println("Small Car too large, Small Car has left");
+			}
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
     	else if (randNum < fcProbability ) {
     		FamilySedan fs = new FamilySedan();
-    		chosenPump.addToQueue(fs);
-			System.out.println("Family Sedan Added");
+			if (chosenPump.addToQueue(fs)) {
+				System.out.println("Family Sedan Added");
+			} else {
+				System.out.println("Family Sedan too large, Family Sedan has left");
+			}
     	}
     }
 

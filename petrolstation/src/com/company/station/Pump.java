@@ -3,6 +3,7 @@ package com.company.station;
 import com.company.Main;
 import com.company.station.*;
 import com.company.vehicles.Vehicle;
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
  */
 public class Pump {
 
-    private List<Vehicle> queue;
-    public int queueSize;
+    public List<Vehicle> queue = null;
+    public double queueSize=0;
 
     public Pump(){	
     }
@@ -28,14 +29,15 @@ public class Pump {
      * If fuel is needed, it will run the pumpFuel function otherwise it will check if the vehicle will shop.
      *
      */
-    public void TickRefresh() {
-    	Vehicle v = queue.get(0);
+    public void TickRefresh(Vehicle vehicle) {
+    	System.out.println("Pumping Fuel");
+    	System.out.println(queueSize);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
-    	if(moreFuelNeeded(v)) {
-    		pumpFuel(v);
+    	if(moreFuelNeeded(vehicle)) {
+    		pumpFuel(vehicle);
     	}
     	else {
-    		removeFromQueue(v);
+    		removeFromQueue(vehicle);
     	}
     	
     	for (int i=0; i < queue.size(); i++) {
@@ -88,8 +90,11 @@ public class Pump {
      *
      */
     public void addToQueue(Vehicle vehicle) {
-    	if (queueSize < 3.00 && queueSize + vehicle.queueSize < 3.00) {
+    	if (queueSize < 6 && (double)queueSize + vehicle.queueSize < (double)6) {
+    		System.out.println("Car Added");
     		queue.add(vehicle);
+    		queueSize += vehicle.queueSize;
     	}
+    	System.out.println("Car too large");
     }
 }

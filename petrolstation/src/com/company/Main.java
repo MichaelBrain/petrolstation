@@ -57,5 +57,7 @@ public class Main {
 
         System.out.println("There are currently " + shop.tills.size() + " tills operating");
         System.out.println(SPACER);
+        
+        station.RunEvery10();
     }
 }

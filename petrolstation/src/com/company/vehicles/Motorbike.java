@@ -9,7 +9,7 @@ package com.company.vehicles;
 public class Motorbike extends Vehicle {
 
     public int fuelTankSize = 5;
-    public int fuelReceived;
+    public int fuelReceived = 0;
     public int probabilityOfShop = 0;
     public double queueSize = 0.75;
     public double queueDuration;

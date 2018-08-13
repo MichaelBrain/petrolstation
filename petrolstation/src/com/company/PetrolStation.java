@@ -23,13 +23,12 @@ public class PetrolStation {
     private double profit;
     private double losses;
     public List<Pump> pumps;
-    public int scProbability;
-    public int fcProbability;
-    public int mProbablilty;
+    public int scProbability = 60;
+    public int fcProbability = 90;
+    public int mProbablilty = 20;
     
     PetrolStation() {
     }
-    
     
     /**
      * 
@@ -37,8 +36,16 @@ public class PetrolStation {
      *
      */
     public void update() {
+    	    	
+    	Pump p = new Pump();
     	for (int i = 0; i < pumps.size(); i++) {
-    		pumps.get(i).TickRefresh();
+    		p=pumps.get(i);	
+    		if (p.queueSize != 0) {
+    		p.TickRefresh(pumps.get(i).queue.get(0));
+    		}
+    		else {
+    			break;
+    		}
     	}
     	addCars();
     }
@@ -49,31 +56,29 @@ public class PetrolStation {
      *
      */
     private void addCars(){
-    	Pump chosenPump = getEmptiestPump();
+    	Pump chosenPump = new Pump();
+    	chosenPump = getEmptiestPump();
     	Random SpawnProb = new Random();
     	int randNum = SpawnProb.nextInt(100) + 1;
+    	System.out.println(randNum);
     	
     	//if the random integer is below the motorbike probability, then create a motorbike
-    	if (randNum > mProbablilty){
-    		Motorbike m = new Motorbike();
-    		chosenPump.addToQueue(m);
+    	if (randNum < mProbablilty){
+    		Motorbike mBike = new Motorbike();
+    		chosenPump.addToQueue(mBike);
     	}
     	//if the random integer is below the small car probability, then create a small car
-    	else if (randNum > scProbability) {
+    	else if (randNum < scProbability) {
     		SmallCar sc = new SmallCar();
     		chosenPump.addToQueue(sc);
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
-    	else if (randNum > fcProbability ) {
+    	else if (randNum < fcProbability ) {
     		FamilySedan fs = new FamilySedan();
     		chosenPump.addToQueue(fs);
     	}
     }
 
-    private void removeVehicle(Vehicle vehicle){
-    	
-    }
-      
     /**
 	 *
 	 * The getEmptiest pump function determines the emptiest pump by comparing all of the queue sizes to get the lowest value.
@@ -82,11 +87,11 @@ public class PetrolStation {
 	 */
 	private Pump getEmptiestPump() {
 		Pump p = pumps.get(0);
-		Pump pToCheck;
+		Pump pToCheck = new Pump();
 		for (int i=0; i < pumps.size(); i++)
 		{
 			pToCheck = pumps.get(i);
-			if (p.queueSize > pToCheck.queueSize)
+			if (p.queueSize < pToCheck.queueSize)
 			{
 				p = pToCheck;
 			}
@@ -94,10 +99,11 @@ public class PetrolStation {
 		return p;
 	}
 	
-	private void RunEvery10() {
+	public void RunEvery10() {
 		while (true) {
 			try {
 				update();
+				System.out.println("Next Tick");
 				TimeUnit.SECONDS.sleep(10);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");

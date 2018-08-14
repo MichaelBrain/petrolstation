@@ -106,7 +106,7 @@ public class Shop {
         for (int i=0; i < tills.size(); i++)
         {
             tToCheck = tills.get(i);
-            if (t.queueSize < tToCheck.queueSize)
+            if (t.queueSize > tToCheck.queueSize)
             {
                 t = tToCheck;
             }

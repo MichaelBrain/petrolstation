@@ -12,12 +12,13 @@ public class FamilySedan extends Vehicle {
 	
     public int fuelTankSize = 18;
     public int fuelReceived = 0;
+    public int tickTime = 0;
     public int probabilityOfShop = 40;
     public double queueSize = 1.50;
     public double queueDuration;
     public boolean shopping;
     public boolean paid;
-    public int tickTime;
+    public boolean readyToPay = false;
 
     /**
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.

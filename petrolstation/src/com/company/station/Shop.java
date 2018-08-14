@@ -12,6 +12,7 @@ public class Shop {
     public double profit = 0;
 	public double losses = 0;
     private int shoppers = 0;
+
     public Shop() {
 	}
 

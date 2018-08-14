@@ -17,6 +17,7 @@ public abstract class Vehicle {
     public double queueDuration = 0.0;
     public boolean shopping = false;
     public boolean paid = false;
+    public boolean readyToPay = false;
 
     /**
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.

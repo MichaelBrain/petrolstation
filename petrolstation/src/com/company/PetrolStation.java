@@ -27,9 +27,12 @@ public class PetrolStation {
     private double profit;
     private double losses;
     public ArrayList<Pump> pumps = new ArrayList<Pump>();
-    public int scProbability = 60;
-    public int fcProbability = 90;
-    public int mProbablilty = 20;
+    public int scProbability = 0;
+    public int fcProbability = 0;
+    public int mProbablilty = 0;
+    private int mCount = 0;
+    private int scCount = 0;
+    private int fsCount = 0;
 	public Shop shop = Main.shop;
 	private static final String SPACER = "--------- OTHER ---------";
     
@@ -74,6 +77,7 @@ public class PetrolStation {
     		Motorbike mBike = new Motorbike();
     		if (chosenPump.addToQueue(mBike, mBike.queueSize)) {
     			System.out.println("A Motorbike Arrives");
+    			mCount++;
 			} else {
 				System.out.println("Motorbike too large, motorbike has left");
 				losses += mBike.fuelTankSize * fuelPrice;
@@ -84,6 +88,7 @@ public class PetrolStation {
     		SmallCar sc = new SmallCar();
 			if (chosenPump.addToQueue(sc, sc.queueSize)) {
 				System.out.println("A Small Car Arrives");
+				scCount++;
 			} else {
 				System.out.println("Small Car too large, Small Car has left");
 				losses += sc.fuelTankSize * fuelPrice;
@@ -94,6 +99,7 @@ public class PetrolStation {
     		FamilySedan fs = new FamilySedan();
 			if (chosenPump.addToQueue(fs, fs.queueSize)) {
 				System.out.println("A Family Sedan Arrives");
+				fsCount++;
 			} else {
 				System.out.println("Family Sedan too large, Family Sedan has left");
 				losses += fs.fuelTankSize * fuelPrice;
@@ -125,16 +131,21 @@ public class PetrolStation {
 	}
 	
 	public void RunEvery10() {
-		while (true) {
+		int iterator = 0;
+		while (iterator < 1440) {
 			try {
 				update();
-				System.out.println("-------------------------------------------");
+				iterator++;
+				System.out.println("------ " + iterator + " of 1440 ------");
 				TimeUnit.MILLISECONDS.sleep(50);
 				System.out.println("Total profit: " + profit);
 				System.out.println("Total losses: " + losses);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");
 				}
+		System.out.println("Motorbikes: " + mCount);
+		System.out.println("Small Cars: " + scCount);
+		System.out.println("Family Sedans: " + fsCount);
 		}
 	}
 }

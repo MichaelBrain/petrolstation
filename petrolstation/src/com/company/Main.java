@@ -27,6 +27,11 @@ public class Main {
 
         String numberOfPumps = JOptionPane.showInputDialog(null, "Please input a number of pumps.");
         String numberOfTills = JOptionPane.showInputDialog(null, "Please input a number of tills.");
+        String spawnProbMandSC = JOptionPane.showInputDialog(null, "Please define the spawn rate of motorbike and small cars between 1 and 100%");
+        String spawnProbFS = JOptionPane.showInputDialog(null, "Please define the spawn rate of family sedans between 1 and 100%");
+        s.mProbablilty = Integer.parseInt(spawnProbMandSC);
+        s.scProbability = 2 * Integer.parseInt(spawnProbMandSC);
+        s.fcProbability = s.scProbability + Integer.parseInt(spawnProbFS);
         s.noOfPumps = Integer.parseInt(numberOfPumps);
         shop.noOfTills = Integer.parseInt(numberOfTills);
 

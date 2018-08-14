@@ -53,7 +53,7 @@ public class Pump {
      * pumpFuel will run when called from TickRefresh and will increment the fuelReceveived variable by 1 as 1 gallon was pumped.
      *
      */
-    private void pumpFuel() {
+    public void pumpFuel() {
 		System.out.println(SPACER);
 
 		Vehicle vehicle = queue.get(0);
@@ -80,7 +80,7 @@ public class Pump {
      * moreFuelNeeded will check the vehicles tank size against the amount filled, if the fuel tank size is larger than the fuel received, it will return true.
      *
      */
-    private boolean moreFuelNeeded() {
+    public boolean moreFuelNeeded() {
     	Vehicle v = queue.get(0);
     	if (v instanceof Motorbike) {
     		Motorbike m = (Motorbike) v;

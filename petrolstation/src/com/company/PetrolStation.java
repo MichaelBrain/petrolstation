@@ -137,7 +137,7 @@ public class PetrolStation {
 				update();
 				iterator++;
 				System.out.println("------ " + iterator + " of 1440 ------");
-				TimeUnit.MILLISECONDS.sleep(50);
+				TimeUnit.SECONDS.sleep(10);
 				System.out.println("Total profit: " + profit);
 				System.out.println("Total losses: " + losses);
 				} catch (InterruptedException e) {

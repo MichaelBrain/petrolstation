@@ -25,7 +25,7 @@ public class Till {
     public Till(){
     }
 
-    public void takePayment(){
+    public double takePayment(){
     	System.out.println("Vehicles in till queue " + queue.size());
     if (queue.size() != 0) {
 	        Vehicle vehicle = queue.get(0);
@@ -34,21 +34,25 @@ public class Till {
 	            paymentAmount = paymentAmount + (double)m.fuelReceived * fuelPrice;
 	            m.paid = true;
 	            queue.remove(0);
-	            System.out.println("Profit: " + paymentAmount);
+	            System.out.println("Amount paid: " + paymentAmount);
+	            return paymentAmount;
 	        } else if (vehicle instanceof SmallCar) {
 	            SmallCar sc = (SmallCar) vehicle;
 	            paymentAmount = paymentAmount + (double)sc.fuelReceived * fuelPrice;
 	            sc.paid = true;
 	            queue.remove(0);
-	            System.out.println("Profit: " + paymentAmount);
+	            System.out.println("Amount paid: " + paymentAmount);
+				return paymentAmount;
 	        } else if (vehicle instanceof FamilySedan) {
 	            FamilySedan fs = (FamilySedan) vehicle;
 	            paymentAmount = paymentAmount + (double)fs.fuelReceived * fuelPrice;
 	            fs.paid = true;
 	            queue.remove(0);
-	            System.out.println("Profit: " + paymentAmount);
+	            System.out.println("Amount paid: " + paymentAmount);
+				return paymentAmount;
 	        }
     	}
+    	return 0.00;
     }
 
     /**

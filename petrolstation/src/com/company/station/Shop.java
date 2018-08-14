@@ -20,7 +20,8 @@ public class Shop {
     	System.out.println("Vehicle queue size: " + vehicles.size());
 		for (int i=0; i < tills.size(); i++) {
 			Till t = tills.get(i);
-			t.takePayment();
+			profit += t.takePayment();
+			System.out.println("Total profit: " + profit);
 		}
 	}
 

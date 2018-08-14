@@ -23,7 +23,7 @@ public class PetrolStation {
     public int noOfPumps;
     public int noOfTills;
     private int pumpCount;
-    private double fuelPrice;
+    private double fuelPrice = 1.20;
     private double profit;
     private double losses;
     public ArrayList<Pump> pumps = new ArrayList<Pump>();
@@ -73,6 +73,8 @@ public class PetrolStation {
     			System.out.println("A Motorbike Arrives");
 			} else {
 				System.out.println("Motorbike too large, motorbike has left");
+				losses += mBike.fuelTankSize * fuelPrice;
+				System.out.println("Total losses: " + losses);
 			}
     	}
     	//if the random integer is below the small car probability, then create a small car
@@ -82,6 +84,8 @@ public class PetrolStation {
 				System.out.println("A Small Car Arrives");
 			} else {
 				System.out.println("Small Car too large, Small Car has left");
+				losses += sc.fuelTankSize * fuelPrice;
+				System.out.println("Total losses: " + losses);
 			}
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
@@ -91,6 +95,8 @@ public class PetrolStation {
 				System.out.println("A Family Sedan Arrives");
 			} else {
 				System.out.println("Family Sedan too large, Family Sedan has left");
+				losses += fs.fuelTankSize * fuelPrice;
+				System.out.println("Total losses: " + losses);
 			}
     	}
     }
@@ -124,7 +130,7 @@ public class PetrolStation {
 				update();
 				System.out.println("Next Tick");
 				System.out.println("-------------------------------------------");
-				TimeUnit.SECONDS.sleep(5);
+				TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");
 				}

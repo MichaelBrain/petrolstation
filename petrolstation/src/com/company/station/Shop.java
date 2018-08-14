@@ -12,8 +12,6 @@ public class Shop {
     public double profit = 0;
 	public double losses = 0;
     private int shoppers = 0;
-	private static final String SPACER = "--------- SHOP ---------";
-
     public Shop() {
 	}
 
@@ -24,8 +22,6 @@ public class Shop {
 	 *
 	 */
     public void TickRefresh() {
-		System.out.println(SPACER);
-    	System.out.println("Vehicle queue size: " + vehicles.size());
 		for (int i=0; i < tills.size(); i++) {
 			Till t = tills.get(i);
 			profit += t.takePayment();

@@ -129,7 +129,7 @@ public class PetrolStation {
 			try {
 				update();
 				System.out.println("-------------------------------------------");
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.MILLISECONDS.sleep(50);
 				System.out.println("Total profit: " + profit);
 				System.out.println("Total losses: " + losses);
 				} catch (InterruptedException e) {

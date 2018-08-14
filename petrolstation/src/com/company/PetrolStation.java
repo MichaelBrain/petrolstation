@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.station.Pump;
+import com.company.station.Shop;
+import com.company.station.Till;
 import com.company.vehicles.*;
 
 import java.util.ArrayList;
@@ -27,8 +29,18 @@ public class PetrolStation {
     public int scProbability = 60;
     public int fcProbability = 90;
     public int mProbablilty = 20;
+
+	public Shop shop;
     
     PetrolStation() {
+    	shop = new Shop();
+		ArrayList<Till> tillList = new ArrayList<Till>();
+		for (int i=0; i < shop.noOfTills; i++)
+		{
+			Till t = new Till();
+			tillList.add(t);
+		}
+		shop.tills = tillList;
     }
     
     /**
@@ -40,13 +52,14 @@ public class PetrolStation {
     	    	
     	Pump p = new Pump();
     	for (int i = 0; i < pumps.size(); i++) {
-    		p=pumps.get(i);	
+    		p = pumps.get(i);
     		if (p.queueSize != 0) {
-    		p.TickRefresh();
+    		p.TickRefresh(getShop());
     		}
     		else {
     		}
     	}
+    	shop.TickRefresh();
     	addCars();
     }
 
@@ -119,11 +132,19 @@ public class PetrolStation {
 				update();
 				System.out.println("Next Tick");
 				System.out.println("-------------------------------------------");
-				TimeUnit.SECONDS.sleep(10);
+				TimeUnit.SECONDS.sleep(1);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");
 				}
 		}
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 }
 

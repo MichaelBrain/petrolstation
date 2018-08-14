@@ -17,7 +17,6 @@ public class Main {
 
     private static final String SPACER = "-------------------------------------------";
     public static PetrolStation station;
-    public static Shop shop;
 
     public static void main(String[] args) {
         setUp();
@@ -25,12 +24,11 @@ public class Main {
 
     public static void setUp(){
         station = new PetrolStation();
-        shop = new Shop();
 
         String numberOfPumps = JOptionPane.showInputDialog(null, "Please input a number of pumps.");
         String numberOfTills = JOptionPane.showInputDialog(null, "Please input a number of tills.");
         station.noOfPumps = Integer.parseInt(numberOfPumps);
-        shop.noOfTills = Integer.parseInt(numberOfTills);
+        station.shop.noOfTills = Integer.parseInt(numberOfTills);
 
         ArrayList<Pump> pumpList = new ArrayList<Pump>();
         for (int i=0; i < station.noOfPumps; i++)
@@ -40,14 +38,6 @@ public class Main {
         }
         station.pumps = pumpList;
 
-        ArrayList<Till> tillList = new ArrayList<Till>();
-        for (int i=0; i < shop.noOfTills; i++)
-        {
-            Till t = new Till();
-            tillList.add(t);
-        }
-        shop.tills = tillList;
-
         System.out.println(SPACER);
         System.out.println("Petrol Station is open for business");
         System.out.println(SPACER);
@@ -55,7 +45,7 @@ public class Main {
         System.out.println("There are currently " + station.pumps.size() + " pumps operating");
         System.out.println(SPACER);
 
-        System.out.println("There are currently " + shop.tills.size() + " tills operating");
+        System.out.println("There are currently " + station.shop.tills.size() + " tills operating");
         System.out.println(SPACER);
         
         station.RunEvery10();

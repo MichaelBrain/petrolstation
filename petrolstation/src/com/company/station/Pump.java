@@ -1,6 +1,7 @@
 package com.company.station;
 
 import com.company.Main;
+import com.company.PetrolStation;
 import com.company.station.*;
 import com.company.vehicles.*;
 import java.util.ArrayList;
@@ -30,14 +31,14 @@ public class Pump {
      * If fuel is needed, it will run the pumpFuel function otherwise it will check if the vehicle will shop.
      *
      */
-    public void TickRefresh() {
+    public void TickRefresh(Shop shop) {
     	Vehicle vehicle = queue.get(0);
     	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
     	if(moreFuelNeeded()) {
     		pumpFuel();
     	}
     	else {
-    		removeFromQueue(vehicle);
+    		removeFromQueue(vehicle, shop);
     	}
     	
     	for (int i=0; i < queue.size(); i++) {
@@ -119,8 +120,7 @@ public class Pump {
      * removes the first vehicle from the queue if they have paid, otherwise it checks if they are shopping or paying and if not will add them to the shop queues.
      *
      */
-    public void removeFromQueue(Vehicle vehicle) {
-    	Shop c = Main.shop;
+    public void removeFromQueue(Vehicle vehicle, Shop c) {
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
     		if (m.paid ) {

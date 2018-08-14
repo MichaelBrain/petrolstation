@@ -1,5 +1,8 @@
 package com.company.station;
 
+import com.company.vehicles.FamilySedan;
+import com.company.vehicles.Motorbike;
+import com.company.vehicles.SmallCar;
 import com.company.vehicles.Vehicle;
 
 import java.util.ArrayList;
@@ -15,18 +18,32 @@ import java.util.List;
 public class Till {
 
     private double paymentAmount;
-    public ArrayList<Vehicle> queue = new ArrayList<Vehicle>();
+    public ArrayList<Vehicle> queue;
     public int queueSize;
     public double fuelPrice = 1.2;
 
     public Till(){
+        queue = new ArrayList<Vehicle>();
     }
 
-    private void takePayment(){
-    	Vehicle v = queue.get(0);
-    	paymentAmount = paymentAmount + (double)v.fuelReceived * fuelPrice;
-    	v.paid = true;
-    	queue.remove(0);
+    public void takePayment(){
+        Vehicle vehicle = queue.get(0);
+        if (vehicle instanceof Motorbike) {
+            Motorbike m = (Motorbike) vehicle;
+            paymentAmount = paymentAmount + (double)m.fuelReceived * fuelPrice;
+            m.paid = true;
+            queue.remove(0);
+        } else if (vehicle instanceof SmallCar) {
+            SmallCar sc = (SmallCar) vehicle;
+            paymentAmount = paymentAmount + (double)sc.fuelReceived * fuelPrice;
+            sc.paid = true;
+            queue.remove(0);;
+        } else if (vehicle instanceof FamilySedan) {
+            FamilySedan fs = (FamilySedan) vehicle;
+            paymentAmount = paymentAmount + (double)fs.fuelReceived * fuelPrice;
+            fs.paid = true;
+            queue.remove(0);
+        }
     }
 
     /**

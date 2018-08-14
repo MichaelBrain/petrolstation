@@ -6,13 +6,23 @@ import java.util.List;
 
 public class Shop {
 
-    public ArrayList<Till> tills = new ArrayList<Till>();
+    public ArrayList<Till> tills;
     public ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
     public int noOfTills;
-    private double profit;
+    public double profit;
+	public double losses;
     private int shoppers;
 
-    public Shop() {}
+    public Shop() {
+		tills = new ArrayList<Till>();
+	}
+
+    public void TickRefresh() {
+		for (int i=0; i < tills.size(); i++) {
+			Till t = tills.get(i);
+			t.takePayment();
+		}
+	}
 
     private void takePayment(Vehicle vehicle){
     	Till t = getEmptiestTill();
@@ -24,7 +34,7 @@ public class Shop {
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
     		if (m.shopCheck()) {
-    			if (vehicle.shopping) {
+    			if (m.shopping) {
     				vehicles.add(m);
     			}
     		}
@@ -35,7 +45,7 @@ public class Shop {
     	else if (vehicle instanceof SmallCar) {
     		SmallCar sc = (SmallCar) vehicle;
     		if (sc.shopCheck()) {
-    			if (vehicle.shopping) {
+    			if (sc.shopping) {
     				vehicles.add(sc);
     			}
     		}
@@ -46,7 +56,7 @@ public class Shop {
     	else if (vehicle instanceof FamilySedan) {
     		FamilySedan fs = (FamilySedan) vehicle;
     		if (fs.shopCheck()) {
-    			if (vehicle.shopping) {
+    			if (fs.shopping) {
     				vehicles.add(fs);
     			}
     		}

@@ -130,6 +130,7 @@ public class Pump {
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
     		if (m.paid ) {
+    			queueSize = queueSize - m.queueSize;
     			queue.remove(0);
     		}
     		else if (!c.vehicles.contains(m)) {
@@ -140,6 +141,7 @@ public class Pump {
     		SmallCar sc = (SmallCar) vehicle;
     		if (sc.paid == true) {
     			queue.remove(0);
+    			queueSize = queueSize - sc.queueSize;
     		}
     		else if (!c.vehicles.contains(sc)) {
     			c.addShopper(sc);
@@ -149,6 +151,7 @@ public class Pump {
     		FamilySedan fs = (FamilySedan) vehicle;
     		if (fs.paid == true) {
     			queue.remove(0);
+    			queueSize = queueSize - fs.queueSize;
     		}
     		else if (!c.vehicles.contains(fs)) {
     			c.addShopper(fs);

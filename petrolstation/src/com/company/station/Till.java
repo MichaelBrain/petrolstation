@@ -41,6 +41,7 @@ public class Till {
 	            Motorbike m = (Motorbike) vehicle;
 	            paymentAmount = paymentAmount + (double)m.fuelReceived * fuelPrice;
 	            m.paid = true;
+	            queueSize = queueSize - m.queueSize;
 	            queue.remove(0);
 	            System.out.println("Motorbike amount paid: " + paymentAmount);
 	            return paymentAmount;
@@ -49,6 +50,7 @@ public class Till {
 	            paymentAmount = paymentAmount + (double)sc.fuelReceived * fuelPrice;
 	            sc.paid = true;
 	            queue.remove(0);
+	            queueSize = queueSize - sc.queueSize;
 	            System.out.println("Small Car amount paid: " + paymentAmount);
 				return paymentAmount;
 	        } else if (vehicle instanceof FamilySedan) {
@@ -56,6 +58,7 @@ public class Till {
 	            paymentAmount = paymentAmount + (double)fs.fuelReceived * fuelPrice;
 	            fs.paid = true;
 	            queue.remove(0);
+	            queueSize = queueSize - fs.queueSize;
 	            System.out.println("Family Sedan amount paid: " + paymentAmount);
 				return paymentAmount;
 	        }

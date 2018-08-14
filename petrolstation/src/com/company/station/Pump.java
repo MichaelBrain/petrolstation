@@ -20,6 +20,7 @@ public class Pump {
 
     public ArrayList<Vehicle> queue = new ArrayList<Vehicle>();
     public double queueSize=0;
+	private static final String SPACER = "--------- PUMP ---------";
 
     public Pump(){
     }
@@ -53,21 +54,23 @@ public class Pump {
      *
      */
     private void pumpFuel() {
-    	Vehicle vehicle = queue.get(0);
+		System.out.println(SPACER);
+
+		Vehicle vehicle = queue.get(0);
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
     		m.fuelReceived += 1;
-    		System.out.println("Total fuel pumped: " + m.fuelReceived + ". Total fuel required: " + m.fuelTankSize);
+    		System.out.println("Motorbike - Total fuel pumped: " + m.fuelReceived + ". Total fuel required: " + m.fuelTankSize);
     		queue.set(0, m);
     	} else if (vehicle instanceof SmallCar) {
     		SmallCar sc = (SmallCar) vehicle;
     		sc.fuelReceived += 1;
-    		System.out.println("Total fuel pumped: " + sc.fuelReceived + ". Total fuel required: " + sc.fuelTankSize);
+    		System.out.println("Small car - Total fuel pumped: " + sc.fuelReceived + ". Total fuel required: " + sc.fuelTankSize);
     		queue.set(0, sc);
     	} else if (vehicle instanceof FamilySedan) {
     		FamilySedan fs = (FamilySedan) vehicle;
     		fs.fuelReceived += 1;
-    		System.out.println("Total fuel pumped: " + fs.fuelReceived + ". Total fuel required: " + fs.fuelTankSize);
+    		System.out.println("Family Sedan - Total fuel pumped: " + fs.fuelReceived + ". Total fuel required: " + fs.fuelTankSize);
     		queue.set(0, fs);
     	}
     }
@@ -82,7 +85,7 @@ public class Pump {
     	if (v instanceof Motorbike) {
     		Motorbike m = (Motorbike) v;
     		if (m.fuelTankSize > m.fuelReceived) {
-    			System.out.println("tank size: " + m.fuelTankSize + ". Received: " + m.fuelReceived);
+    			System.out.println("Motorbike - tank size: " + m.fuelTankSize + ". Received: " + m.fuelReceived);
         		return true;
         	}
         	else {
@@ -93,7 +96,7 @@ public class Pump {
     	else if (v instanceof SmallCar) {
     		SmallCar sc = (SmallCar) v;
     		if (sc.fuelTankSize > sc.fuelReceived) {
-    			System.out.println("tank size: " + sc.fuelTankSize + ". Received: " + sc.fuelReceived);
+    			System.out.println("Small Car - tank size: " + sc.fuelTankSize + ". Received: " + sc.fuelReceived);
         		return true;
         	}
     		else {
@@ -104,7 +107,7 @@ public class Pump {
     	else if(v instanceof FamilySedan) {
     		FamilySedan fs = (FamilySedan) v;
     		if (fs.fuelTankSize > fs.fuelReceived) {
-    			System.out.println("tank size: " + fs.fuelTankSize + ". Received: " + fs.fuelReceived);
+    			System.out.println("Family Sedan - tank size: " + fs.fuelTankSize + ". Received: " + fs.fuelReceived);
         		return true;
         	}
         	else {
@@ -119,40 +122,36 @@ public class Pump {
     /**
      * 
      * removes the first vehicle from the queue if they have paid, otherwise it checks if they are shopping or paying and if not will add them to the shop queues.
-     *
+     * @param vehicle
+	 * @[param c Shop
+	 *
      */
     public void removeFromQueue(Vehicle vehicle, Shop c) {
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
     		if (m.paid ) {
     			queue.remove(0);
-    			System.out.println("Motorbike Paid");
     		}
     		else if (!c.vehicles.contains(m)) {
     			c.addShopper(m);
-    			System.out.println("Motorbike added to shop");
     		}
     		
     	} else if (vehicle instanceof SmallCar) {
     		SmallCar sc = (SmallCar) vehicle;
     		if (sc.paid == true) {
     			queue.remove(0);
-    			System.out.println("Small Car Paid");
     		}
     		else if (!c.vehicles.contains(sc)) {
     			c.addShopper(sc);
-    			System.out.println("Small car added to shop");
     		}
     		
     	} else if (vehicle instanceof FamilySedan) {
     		FamilySedan fs = (FamilySedan) vehicle;
     		if (fs.paid == true) {
     			queue.remove(0);
-    			System.out.println("Family Sedan Paid");
     		}
     		else if (!c.vehicles.contains(fs)) {
     			c.addShopper(fs);
-    			System.out.println("Family Sedan added to shop");
     		}
     	}
     }
@@ -160,7 +159,9 @@ public class Pump {
     /**
      * 
      * addToQueue will check if a vehicle can be fitted into the queue, if it can then it will be added.
-     * @return 
+	 * @param vehicle
+	 * @param vQueueSize
+     * @return boolean
      *
      */
     public boolean addToQueue(Vehicle vehicle, double vQueueSize) {
@@ -168,8 +169,6 @@ public class Pump {
     	if (queueSize < (double)3 && queueSize + vQueueSize <= (double)3) {
     		queue.add(vehicle);
     		queueSize = queueSize + vQueueSize;
-    		System.out.println("Vehicle Added");
-    		System.out.println("Queue Size: " + queueSize);
     		return true;
     	}
     	else {

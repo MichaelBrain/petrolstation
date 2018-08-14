@@ -12,28 +12,44 @@ public class Shop {
     public double profit = 0;
 	public double losses = 0;
     private int shoppers = 0;
+	private static final String SPACER = "--------- SHOP ---------";
 
     public Shop() {
 	}
 
+	/**
+	 *
+	 * TickRefresh will run each time a new simulation tick is started, this function checks if fuel is needed for the first vehicle in the queue.
+	 * If payment is needed, it will run the takePayment function otherwise it will wait
+	 *
+	 */
     public void TickRefresh() {
+		System.out.println(SPACER);
     	System.out.println("Vehicle queue size: " + vehicles.size());
 		for (int i=0; i < tills.size(); i++) {
 			Till t = tills.get(i);
 			profit += t.takePayment();
-			System.out.println("Total profit: " + profit);
 		}
 	}
 
-    
+	/**
+	 *
+	 * Takes the payment from the vehicle
+	 * @param vehicle
+	 *
+	 */
     private void takePayment(Vehicle vehicle){
-    	System.out.println("Vehicle added to queue");
     	Till t = getEmptiestTill();
 		t.addToQueue(vehicle);
     }
 
-    
-    
+
+	/**
+	 *
+	 * Adds the Vehicle to the queue within the shop to either shop or make a payment
+	 * @param vehicle
+	 *
+	 */
     public void addShopper(Vehicle vehicle){
     	if (vehicle instanceof Motorbike) {
     		Motorbike m = (Motorbike) vehicle;
@@ -43,7 +59,6 @@ public class Shop {
     			}
     		}
     		else {
-    			System.out.println("Motorbike not shopping");
     			takePayment(m);
     		}
     	}
@@ -55,7 +70,6 @@ public class Shop {
     			}
     		}
     		else {
-    			System.out.println("SC not shopping");
     			takePayment(sc);
     		}
     	}
@@ -67,7 +81,6 @@ public class Shop {
     			}
     		}
     		else {
-    			System.out.println("FS not shopping");
     			takePayment(fs);
     		}
     	}

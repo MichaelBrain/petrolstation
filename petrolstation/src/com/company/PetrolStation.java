@@ -30,7 +30,8 @@ public class PetrolStation {
     public int scProbability = 60;
     public int fcProbability = 90;
     public int mProbablilty = 20;
-	//public Shop shop = new Shop();
+	public Shop shop = Main.shop;
+	private static final String SPACER = "--------- OTHER ---------";
     
     PetrolStation() {
     }
@@ -46,12 +47,13 @@ public class PetrolStation {
     	for (int i = 0; i < pumps.size(); i++) {
     		p = pumps.get(i);
     		if (p.queueSize != 0) {
-    		p.TickRefresh(Main.shop);
+    		p.TickRefresh(shop);
     		}
     		else {
     		}
     	}
-    	Main.shop.TickRefresh();
+    	shop.TickRefresh();
+    	profit = shop.profit;
     	addCars();
     }
 
@@ -67,6 +69,7 @@ public class PetrolStation {
     	int randNum = SpawnProb.nextInt(100) + 1;
 
     	//if the random integer is below the motorbike probability, then create a motorbike
+		System.out.println(SPACER);
     	if (randNum < mProbablilty){
     		Motorbike mBike = new Motorbike();
     		if (chosenPump.addToQueue(mBike, mBike.queueSize)) {
@@ -74,7 +77,6 @@ public class PetrolStation {
 			} else {
 				System.out.println("Motorbike too large, motorbike has left");
 				losses += mBike.fuelTankSize * fuelPrice;
-				System.out.println("Total losses: " + losses);
 			}
     	}
     	//if the random integer is below the small car probability, then create a small car
@@ -85,7 +87,6 @@ public class PetrolStation {
 			} else {
 				System.out.println("Small Car too large, Small Car has left");
 				losses += sc.fuelTankSize * fuelPrice;
-				System.out.println("Total losses: " + losses);
 			}
     	}
     	//if the random integer is below the family sedan probability, then create a family sedan
@@ -96,7 +97,6 @@ public class PetrolStation {
 			} else {
 				System.out.println("Family Sedan too large, Family Sedan has left");
 				losses += fs.fuelTankSize * fuelPrice;
-				System.out.println("Total losses: " + losses);
 			}
     	}
     }
@@ -128,9 +128,10 @@ public class PetrolStation {
 		while (true) {
 			try {
 				update();
-				System.out.println("Next Tick");
 				System.out.println("-------------------------------------------");
 				TimeUnit.SECONDS.sleep(1);
+				System.out.println("Total profit: " + profit);
+				System.out.println("Total losses: " + losses);
 				} catch (InterruptedException e) {
 					System.out.println("Wait failed");
 				}

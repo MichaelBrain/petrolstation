@@ -16,38 +16,49 @@ import java.util.Scanner;
 public class Main {
 
     private static final String SPACER = "-------------------------------------------";
-    public static PetrolStation station;
+    public static Shop shop = new Shop();
 
     public static void main(String[] args) {
         setUp();
     }
 
     public static void setUp(){
-        station = new PetrolStation();
+        PetrolStation s = new PetrolStation();
 
         String numberOfPumps = JOptionPane.showInputDialog(null, "Please input a number of pumps.");
         String numberOfTills = JOptionPane.showInputDialog(null, "Please input a number of tills.");
-        station.noOfPumps = Integer.parseInt(numberOfPumps);
-        station.shop.noOfTills = Integer.parseInt(numberOfTills);
+        s.noOfPumps = Integer.parseInt(numberOfPumps);
+        shop.noOfTills = Integer.parseInt(numberOfTills);
 
         ArrayList<Pump> pumpList = new ArrayList<Pump>();
-        for (int i=0; i < station.noOfPumps; i++)
+        for (int i=0; i < s.noOfPumps; i++)
         {
         	Pump p = new Pump();
         	pumpList.add(p);
         }
-        station.pumps = pumpList;
+        s.pumps = pumpList;
+        
+        
+        ArrayList<Till> tillList = new ArrayList<Till>();
+        for (int i=0; i < shop.noOfTills; i++)
+        {
+        	Till t = new Till();
+        	tillList.add(t);
+        }
+        shop.tills = tillList;
+        System.out.println("Till count: " + shop.tills.size());
 
+        
         System.out.println(SPACER);
         System.out.println("Petrol Station is open for business");
         System.out.println(SPACER);
 
-        System.out.println("There are currently " + station.pumps.size() + " pumps operating");
+        System.out.println("There are currently " + s.pumps.size() + " pumps operating");
         System.out.println(SPACER);
 
-        System.out.println("There are currently " + station.shop.tills.size() + " tills operating");
+        System.out.println("There are currently " + shop.noOfTills + " tills operating");
         System.out.println(SPACER);
         
-        station.RunEvery10();
+        s.RunEvery10();
     }
 }

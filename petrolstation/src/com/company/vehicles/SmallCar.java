@@ -22,18 +22,19 @@ public class SmallCar extends Vehicle {
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.
      */
     public boolean shopCheck() {
-    	if (tickTime <= 30) {
-    		Random rand = new Random();
-    		int random = rand.nextInt(100)+1;
-    		if (random < probabilityOfShop) {
-    			return true;
-    		}
-    		else {
-    			return false;
-    		}
-    	}
-    	else {
-    		return false;
-    	}   
+    	return false;
+//    	if (tickTime <= 30) {
+//    		Random rand = new Random();
+//    		int random = rand.nextInt(100)+1;
+//    		if (random < probabilityOfShop) {
+//    			return true;
+//    		}
+//    		else {
+//    			return false;
+//    		}
+//    	}
+//    	else {
+//    		return false;
+//    	}   
     }
 }

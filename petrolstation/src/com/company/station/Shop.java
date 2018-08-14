@@ -6,29 +6,32 @@ import java.util.List;
 
 public class Shop {
 
-    public ArrayList<Till> tills;
+    public ArrayList<Till> tills = new ArrayList<Till>();
     public ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-    public int noOfTills;
-    public double profit;
-	public double losses;
-    private int shoppers;
+    public int noOfTills = 0;
+    public double profit = 0;
+	public double losses = 0;
+    private int shoppers = 0;
 
     public Shop() {
-		tills = new ArrayList<Till>();
 	}
 
     public void TickRefresh() {
+    	System.out.println("Vehicle queue size: " + vehicles.size());
 		for (int i=0; i < tills.size(); i++) {
 			Till t = tills.get(i);
 			t.takePayment();
 		}
 	}
 
+    
     private void takePayment(Vehicle vehicle){
+    	System.out.println("Vehicle added to queue");
     	Till t = getEmptiestTill();
 		t.addToQueue(vehicle);
     }
 
+    
     
     public void addShopper(Vehicle vehicle){
     	if (vehicle instanceof Motorbike) {
@@ -39,6 +42,7 @@ public class Shop {
     			}
     		}
     		else {
+    			System.out.println("Motorbike not shopping");
     			takePayment(m);
     		}
     	}
@@ -50,6 +54,7 @@ public class Shop {
     			}
     		}
     		else {
+    			System.out.println("SC not shopping");
     			takePayment(sc);
     		}
     	}
@@ -61,17 +66,20 @@ public class Shop {
     			}
     		}
     		else {
+    			System.out.println("FS not shopping");
     			takePayment(fs);
     		}
     	}
     }
+    
+    
 
     private void removeShopper(Vehicle vehicle){
-    	
-    	vehicles.remove(vehicle);
-    	
+    	vehicles.remove(vehicle);	
     }
 
+    
+    
     /**
      *
      * The getEmptiest till function determines the emptiest till by comparing all of the queue sizes to get the lowest value.
@@ -84,7 +92,7 @@ public class Shop {
         for (int i=0; i < tills.size(); i++)
         {
             tToCheck = tills.get(i);
-            if (t.queueSize > tToCheck.queueSize)
+            if (t.queueSize < tToCheck.queueSize)
             {
                 t = tToCheck;
             }

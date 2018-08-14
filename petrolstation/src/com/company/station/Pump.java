@@ -22,7 +22,6 @@ public class Pump {
     public double queueSize=0;
 
     public Pump(){
-    	queue = new ArrayList<Vehicle>();
     }
     
     /**
@@ -32,17 +31,19 @@ public class Pump {
      *
      */
     public void TickRefresh(Shop shop) {
-    	Vehicle vehicle = queue.get(0);
-    	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
-    	if(moreFuelNeeded()) {
-    		pumpFuel();
-    	}
-    	else {
-    		removeFromQueue(vehicle, shop);
-    	}
-    	
-    	for (int i=0; i < queue.size(); i++) {
-    		queue.get(0).tickTime += 1;
+    	if (queue.size() != 0) {
+	    	Vehicle vehicle = queue.get(0);
+	    	//if moreFuelNeeded returns true, then run the pump fuel function. otherwise check if the vehicle will go shopping.
+	    	if(moreFuelNeeded()) {
+	    		pumpFuel();
+	    	}
+	    	else {
+	    		removeFromQueue(vehicle, shop);
+	    	}
+	    	
+	    	for (int i=0; i < queue.size(); i++) {
+	    		queue.get(0).tickTime += 1;
+	    	}
     	}
     }
     
@@ -125,27 +126,33 @@ public class Pump {
     		Motorbike m = (Motorbike) vehicle;
     		if (m.paid ) {
     			queue.remove(0);
+    			System.out.println("Motorbike Paid");
     		}
     		else if (!c.vehicles.contains(m)) {
     			c.addShopper(m);
+    			System.out.println("Motorbike added to shop");
     		}
     		
     	} else if (vehicle instanceof SmallCar) {
     		SmallCar sc = (SmallCar) vehicle;
-    		if (sc.paid ) {
+    		if (sc.paid == true) {
     			queue.remove(0);
+    			System.out.println("Small Car Paid");
     		}
     		else if (!c.vehicles.contains(sc)) {
     			c.addShopper(sc);
+    			System.out.println("Small car added to shop");
     		}
     		
     	} else if (vehicle instanceof FamilySedan) {
     		FamilySedan fs = (FamilySedan) vehicle;
-    		if (fs.paid ) {
+    		if (fs.paid == true) {
     			queue.remove(0);
+    			System.out.println("Family Sedan Paid");
     		}
     		else if (!c.vehicles.contains(fs)) {
     			c.addShopper(fs);
+    			System.out.println("Family Sedan added to shop");
     		}
     	}
     }

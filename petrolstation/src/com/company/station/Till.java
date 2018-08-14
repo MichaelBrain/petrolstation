@@ -18,32 +18,37 @@ import java.util.List;
 public class Till {
 
     private double paymentAmount;
-    public ArrayList<Vehicle> queue;
-    public int queueSize;
+    public ArrayList<Vehicle> queue = new ArrayList<Vehicle>() ;
+    public double queueSize;
     public double fuelPrice = 1.2;
 
     public Till(){
-        queue = new ArrayList<Vehicle>();
     }
 
     public void takePayment(){
-        Vehicle vehicle = queue.get(0);
-        if (vehicle instanceof Motorbike) {
-            Motorbike m = (Motorbike) vehicle;
-            paymentAmount = paymentAmount + (double)m.fuelReceived * fuelPrice;
-            m.paid = true;
-            queue.remove(0);
-        } else if (vehicle instanceof SmallCar) {
-            SmallCar sc = (SmallCar) vehicle;
-            paymentAmount = paymentAmount + (double)sc.fuelReceived * fuelPrice;
-            sc.paid = true;
-            queue.remove(0);;
-        } else if (vehicle instanceof FamilySedan) {
-            FamilySedan fs = (FamilySedan) vehicle;
-            paymentAmount = paymentAmount + (double)fs.fuelReceived * fuelPrice;
-            fs.paid = true;
-            queue.remove(0);
-        }
+    	System.out.println("Vehicles in till queue " + queue.size());
+    if (queue.size() != 0) {
+	        Vehicle vehicle = queue.get(0);
+	        if (vehicle instanceof Motorbike) {
+	            Motorbike m = (Motorbike) vehicle;
+	            paymentAmount = paymentAmount + (double)m.fuelReceived * fuelPrice;
+	            m.paid = true;
+	            queue.remove(0);
+	            System.out.println("Profit: " + paymentAmount);
+	        } else if (vehicle instanceof SmallCar) {
+	            SmallCar sc = (SmallCar) vehicle;
+	            paymentAmount = paymentAmount + (double)sc.fuelReceived * fuelPrice;
+	            sc.paid = true;
+	            queue.remove(0);
+	            System.out.println("Profit: " + paymentAmount);
+	        } else if (vehicle instanceof FamilySedan) {
+	            FamilySedan fs = (FamilySedan) vehicle;
+	            paymentAmount = paymentAmount + (double)fs.fuelReceived * fuelPrice;
+	            fs.paid = true;
+	            queue.remove(0);
+	            System.out.println("Profit: " + paymentAmount);
+	        }
+    	}
     }
 
     /**
@@ -52,7 +57,7 @@ public class Till {
      *
      */
     public void addToQueue(Vehicle vehicle) {
-        if (queueSize < 6 - vehicle.queueSize) {
+        if (queueSize <= (double)6 - vehicle.queueSize) {
             queue.add(vehicle);
         }
     }

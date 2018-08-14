@@ -23,7 +23,8 @@ public class FamilySedan extends Vehicle {
      * takes the probability of the vehicle shopping and generates a random number against it, if it is lower then it will return true for shopping.
      */
     public boolean shopCheck() {
-    	if (tickTime <= 60) {
+    	return false;
+    	/*if (tickTime <= 60) {
     		Random rand = new Random();
     		int random = rand.nextInt(100)+1;
     		if (random < probabilityOfShop) {
@@ -35,6 +36,6 @@ public class FamilySedan extends Vehicle {
     	}
     	else {
     		return false;
-    	}   
+    	}   */
     }
 }
